@@ -5,7 +5,7 @@ class Home extends Component {
     console.log('home')
     return (
       <div className="jumbotron">
-        <h1>Welcome to Food thing!</h1>
+        <h1>Welcome!</h1>
       </div>
     )
   }

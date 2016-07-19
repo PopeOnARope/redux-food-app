@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { FETCH_ITEMS_REQUEST } from '../actions'
-
+import { fetchItems } from '../actions'
 
 
 class SearchBar extends Component {
@@ -12,8 +11,8 @@ class SearchBar extends Component {
   }
   handleButtonClick (e) {
     e.preventDefault()
-    console.log(this.state)
-    this.props.dispatch(FETCH_ITEMS_REQUEST(this.state.searchParams))
+    //this can probably be moved to mapdispatchtoprops
+    this.props.dispatch(fetchItems(this.state.searchParams))
   }
   handleParamsChange (e) {
     this.setState({searchParams: e.target.value})
