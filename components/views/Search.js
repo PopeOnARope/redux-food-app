@@ -4,10 +4,9 @@ import SearchResults from '../SearchResults'
 
 class Home extends Component {
   render() {
-    console.log('home')
     return (
-      <div className="panel">
-        <div className="panelBody">
+      <div>
+        <div>
           <h3>Search</h3>
           <SearchBar/>
           <SearchResults/>

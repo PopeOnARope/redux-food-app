@@ -1,36 +1,35 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { fetchItems } from '../actions'
+import { each } from 'lodash'
+import Card from './Card'
 
 
 class SearchResults extends Component {
 	constructor () {
 		super()
-		var self = this
-		var reportState = function () {
-			setTimeout(function () {
-				console.log('results state, props', self.state, self.props, self)
-				reportState()
-				self.render()
-			}, 3000);
-		}
-		reportState()
 	}
 	componentWillReceiveProps (newProps) {
-		console.log('new props', newProps)
 	}
   render () {
+		let items = this.props.searchResults && this.props.searchResults.length ? this.props.searchResults.map((item) => {
+			return <Card key={item.key} {...item}></Card>
+		}) : ""
     return (
       <div>
 				<h3>Results</h3>
+				<div className="row">
+    			{items}
+    		</div>
 			</div>
     )
   }
 }
 
 const mapStateToProps = (state) => {
+	let searchResults = state.searchResults
 	return {
-		items: state.searchResults
+		searchResults
 	}
 }
 

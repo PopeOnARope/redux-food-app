@@ -14,7 +14,7 @@ class Wrapper extends Component {
           </ul>
         </nav>
         <div className="container-fluid">
-          <div className="container">{this.props.children}</div>
+          {this.props.children}
         </div>
       </div>
     )

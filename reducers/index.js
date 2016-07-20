@@ -1,19 +1,22 @@
+import { clone } from 'lodash'
 let initialState = {'foo': 'bar'}
 
 export default (state=initialState, action) => {
   console.log('reducer listening', state, action)
-
+  var _state = clone(state)
   switch(action.type) {
     case "RECIEVE_ITEMS":
-      console.log('items:', action)
-      state.searchResults = action.items
-      state.isFetching = false
-      return state
+      for (var item of action.items) {
+        item.key = item.id
+      }
+      _state.searchResults = action.items
+      _state.isFetching = false
+      console.log('_state from reducer', _state)
+      return _state
     case "FETCH_ITEMS_REQUEST":
-      state.isFetching = true
-      return state
+      _state.isFetching = true
+      return _state
     default:
-      return state
+      return _state
   }
-  return state
 }

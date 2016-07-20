@@ -23,7 +23,7 @@ export const fetchItems = (params) => {
   return function (dispatch) {
     dispatch(requestItems(params))
 
-    return axios.get(`http://api.yummly.com/v1/api/recipes?_app_id=3749ecd0&_app_key=f2d7e42e718a093a05a25d495c821b1f`)
+    return axios.get(`http://api.yummly.com/v1/api/recipes?_app_id=3749ecd0&_app_key=f2d7e42e718a093a05a25d495c821b1f&q=${params}&requirePictures=true`)
     // .then(response => response.json())
     .then(json =>
       dispatch(recieveItems(params, json))
