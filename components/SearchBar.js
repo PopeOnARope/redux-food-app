@@ -19,7 +19,7 @@ class SearchBar extends Component {
   }
   render () {
     return (
-      <form>
+      <form className="form-inline pull-xs-right">
         <div className="input-group">
           <span className="input-group-btn">
             <button className="btn btn-default" onClick={this.handleButtonClick} >Go!</button>

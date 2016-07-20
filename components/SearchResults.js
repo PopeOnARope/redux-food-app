@@ -17,7 +17,6 @@ class SearchResults extends Component {
 		}) : ""
     return (
       <div>
-				<h3>Results</h3>
 				<div className="row">
     			{items}
     		</div>
