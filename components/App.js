@@ -3,7 +3,7 @@ import Wrapper from './Wrapper'
 import { Router, Route, Link, browserHistory, hashHistory } from 'react-router'
 import Home from './views/Home'
 import Search from './views/Search'
-import styles from '../less/main.less'
+import styles from '../sass/main.scss'
 
 class App extends Component {
   render() {

@@ -1,11 +1,12 @@
 import React, { Component } from 'react'
+import SearchResults from '../SearchResults'
 
 class Home extends Component {
   render() {
     console.log('home')
     return (
-      <div className="jumbotron">
-        <h1>Welcome!</h1>
+      <div>
+        <SearchResults/>
       </div>
     )
   }
