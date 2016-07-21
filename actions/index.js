@@ -19,6 +19,14 @@ export const recieveItems = (params, json) => {
   }
 }
 
+export const TOGGLE_DRAWER_COLUMN = "TOGGLE_DRAWER_COLUMN"
+export const toggleDrawerColumn = (newDrawerColumOpenState) => {
+  return {
+    type: TOGGLE_DRAWER_COLUMN,
+    newDrawerColumOpenState
+  }
+}
+
 export const fetchItems = (params) => {
   return function (dispatch) {
     dispatch(requestItems(params))

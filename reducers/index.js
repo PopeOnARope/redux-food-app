@@ -1,5 +1,5 @@
 import { clone } from 'lodash'
-let initialState = {'foo': 'bar'}
+let initialState = {'drawerColumnIsOpen': false}
 
 export default (state=initialState, action) => {
   console.log('reducer listening', state, action)
@@ -15,6 +15,9 @@ export default (state=initialState, action) => {
       return _state
     case "FETCH_ITEMS_REQUEST":
       _state.isFetching = true
+      return _state
+    case "TOGGLE_DRAWER_COLUMN":
+      _state.drawerColumnIsOpen = action.newDrawerColumOpenState
       return _state
     default:
       return _state
