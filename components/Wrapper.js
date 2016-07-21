@@ -22,7 +22,7 @@ class Wrapper extends Component {
     let drawerColumnClassName = `drawer-column-container ${drawerColumnOpenState}`
     console.log(drawerColumnOpenState)
     return (
-      <div>
+      <div className={drawerColumnOpenState}>
         <div className="app-header-container">
           <nav className="navbar navbar-inline flex mtm">
             <ul className="nav navbar-nav">
@@ -34,7 +34,7 @@ class Wrapper extends Component {
           </nav>
         </div>
         <div className="container-fluid">
-        <div className={drawerColumnClassName}>
+        <div className="drawer-column-container">
           <DrawerColumn/>
         </div>
         <div className="main">

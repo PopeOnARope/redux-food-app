@@ -10,6 +10,13 @@ $screen-xs: 320px;
 //mixins
 //------------------------------
 
+@mixin slide($start, $finish) {
+  @keyframes {
+    from {left:$start;}
+    to {left: $finish;}
+  }
+}
+
 
 body {
   background: $bg-primary;
@@ -20,6 +27,12 @@ body {
   padding-left: 0px;
 }
 
+.main {
+  position: absolute;
+  animation-name: slideLeft;
+  animation-duration: 0.5s;
+}
+
 //nav styles
 //-------------------------------
 
@@ -28,18 +41,35 @@ body {
     z-index: 4;
     background: $bg-primary;
     height: 100%;
-    &.closed {
-      animation-name: slideOut;
-      animation-duration: 0.5s;
-      left: 0-$screen-xs;
-    }
-    &.open {
-      animation-name: slideIn;
-      animation-duration: 0.5s;
-    }
     .drawer-column {
       padding-left: 12px;
     }
+}
+
+.open {
+  .drawer-column-container {
+    animation-name: slideIn;
+    animation-duration: 0.5s;
+  }
+  .main {
+    left: $screen-xs;
+    animation-name: slideLeft;
+    animation-duration: 0.5s;
+  }
+}
+
+
+
+.closed {
+  .drawer-column-container {
+    animation-name: slideOut;
+    animation-duration: 0.5s;
+    left: 0-$screen-xs;
+  }
+  .main {
+    animation-name: slideRight;
+    animation-duration: 0.5s;
+  }
 }
 
 .navbar {
@@ -109,4 +139,14 @@ body {
 @keyframes slideOut {
     from {left:0px;}
     to {left: 0-$screen-xs;}
+}
+
+@keyframes slideLeft {
+  from {left: 0px}
+  to {left: $screen-xs;}
+}
+
+@keyframes slideRight {
+  from {left: $screen-xs;}
+  to {left: 0px}
 }
