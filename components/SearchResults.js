@@ -6,9 +6,7 @@ import Card from './Card'
 
 
 class SearchResults extends Component {
-	constructor () {
-		super()
-	}
+
 	componentWillReceiveProps (newProps) {
 	}
   render () {

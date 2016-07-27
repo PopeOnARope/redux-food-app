@@ -15,12 +15,10 @@ class Wrapper extends Component {
     this.props.dispatch(toggleDrawerColumn(!this.props.drawerColumnIsOpen))
   }
   componentWillReceiveProps (newProps) {
-    console.log(newProps)
   }
   render () {
     let drawerColumnOpenState = this.props.drawerColumnIsOpen ? 'open' : 'closed'
     let drawerColumnClassName = `drawer-column-container ${drawerColumnOpenState}`
-    console.log(drawerColumnOpenState)
     return (
       <div className={drawerColumnOpenState}>
         <div className="app-header-container">

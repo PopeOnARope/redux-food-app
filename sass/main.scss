@@ -1,11 +1,13 @@
 @import '../node_modules/bootstrap/scss/bootstrap.scss';
+@import url(https://fonts.googleapis.com/css?family=Oswald);
 
 //variables
 //------------------------------
 
 $gradient-black: linear-gradient(to bottom, rgba(0,0,0,0) 0%,rgba(0,0,0,0.40) 21%,rgba(0,0,0,0.75) 73%,rgba(0,0,0,0.95) 100%);
 $bg-primary: $gray-lighter;
-$screen-xs: 320px;
+$drawer-column-container-width: 225px;
+$font-size-h3: 1.25rem !important;
 
 //mixins
 //------------------------------
@@ -17,6 +19,8 @@ $screen-xs: 320px;
   }
 }
 
+//body, container styles
+//--------------------------------
 
 body {
   background: $bg-primary;
@@ -33,7 +37,13 @@ body {
   animation-duration: 0.5s;
 }
 
-//nav styles
+//type//------------------------
+
+h2, h4 {
+  font-family: 'Oswald';
+}
+
+//nav , drawer-column styles
 //-------------------------------
 
 .drawer-column-container {
@@ -41,9 +51,11 @@ body {
     z-index: 4;
     background: $bg-primary;
     height: 100%;
+    width: $drawer-column-container-width;
     .drawer-column {
       padding-left: 12px;
     }
+    border: 1px solid $gray-light;
 }
 
 .open {
@@ -52,19 +64,17 @@ body {
     animation-duration: 0.5s;
   }
   .main {
-    left: $screen-xs;
+    left: $drawer-column-container-width;
     animation-name: slideLeft;
     animation-duration: 0.5s;
   }
 }
 
-
-
 .closed {
   .drawer-column-container {
     animation-name: slideOut;
     animation-duration: 0.5s;
-    left: 0-$screen-xs;
+    left: 0-$drawer-column-container-width;
   }
   .main {
     animation-name: slideRight;
@@ -74,6 +84,7 @@ body {
 
 .navbar {
   border-radius: 0px !important;
+  border-bottom: 1px solid $gray-light;
   position: fixed;
   width: 100%;
   z-index: 5;
@@ -128,25 +139,35 @@ body {
   padding-left: 10px;
 }
 
+.divider {
+  width:100%;
+  height: 0px;
+  border-bottom: 1px solid $brand-primary;
+  margin-top: $spacer;
+  margin-bottom: $spacer;
+}
+
 //Animations
 //---------------------------------------
 
+//TODO break these out into a mixin
+
 @keyframes slideIn {
-    from {left: 0-$screen-xs;}
+    from {left: 0-$drawer-column-container-width;}
     to {left:0px;}
 }
 
 @keyframes slideOut {
     from {left:0px;}
-    to {left: 0-$screen-xs;}
+    to {left: 0-$drawer-column-container-width;}
 }
 
 @keyframes slideLeft {
   from {left: 0px}
-  to {left: $screen-xs;}
+  to {left: $drawer-column-container-width;}
 }
 
 @keyframes slideRight {
-  from {left: $screen-xs;}
+  from {left: $drawer-column-container-width;}
   to {left: 0px}
 }

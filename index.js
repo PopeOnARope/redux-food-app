@@ -13,8 +13,8 @@ const loggerMiddleware = createLogger()
 const store = createStore(
   state,
   applyMiddleware(
-    thunkMiddleware,
-    loggerMiddleware
+    thunkMiddleware
+    // loggerMiddleware
   )
 )
 
