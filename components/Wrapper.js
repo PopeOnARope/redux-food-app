@@ -14,9 +14,34 @@ class Wrapper extends Component {
     e.preventDefault()
     this.props.dispatch(toggleDrawerColumn(!this.props.drawerColumnIsOpen))
   }
-  componentWillReceiveProps (newProps) {
+  toggleSpinner (isFetching) {
+    let $ = (id) => {
+      return document.getElementById(id)
+    }
+    console.log('toggle spinner', isFetching);
+    let loader = document.createElement('div')
+    loader.className = 'loader'
+    loader.id = 'loader'
+    let backdrop = document.createElement('div')
+    backdrop.className = 'loader-backdrop'
+    backdrop.id = 'backdrop'
+
+    if(isFetching) {
+      console.log('SHOW SPINNER', $('app'));
+      $('app').appendChild(backdrop);
+      $('app').appendChild(loader);
+    } else {
+      console.log('SHOW SPINNER', $('app'));
+      if($('loader')) {
+        $('app').removeChild($('loader'));
+        $('app').removeChild($('backdrop'));
+      }
+    }
   }
+
   render () {
+    console.log('rendering');
+    this.toggleSpinner(this.props.isFetching)
     let drawerColumnOpenState = this.props.drawerColumnIsOpen ? 'open' : 'closed'
     let drawerColumnClassName = `drawer-column-container ${drawerColumnOpenState}`
     return (
@@ -45,9 +70,12 @@ class Wrapper extends Component {
 }
 
 const mapStateToProps = (state) => {
-  var drawerColumnIsOpen = state.drawerColumnIsOpen
+  let drawerColumnIsOpen = state.drawerColumnIsOpen
+  let isFetching = state.isFetching
+  // console.log('state from mapStateToProps', state)
   return {
-    drawerColumnIsOpen: drawerColumnIsOpen
+    drawerColumnIsOpen,
+    isFetching
   }
 }
 

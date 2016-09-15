@@ -4,9 +4,7 @@ import SearchResults from '../SearchResults'
 class Home extends Component {
   render() {
     return (
-      <div>
-        <SearchResults/>
-      </div>
+      <SearchResults/>
     )
   }
 }

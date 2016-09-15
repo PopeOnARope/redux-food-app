@@ -28,6 +28,13 @@ export default (state=initialState, action) => {
     case "UPDATE_PREFERENCES_REQUEST":
       _state.isFetching = true
       return _state
+    case "FETCH_RECIPE_REQUEST":
+      _state.isFetching = true
+      return _state
+    case "RECIEVE_RECIPE":
+      _state.isFetching = false
+      _state.currentRecipe = action.json
+      return _state
     default:
       return _state
   }

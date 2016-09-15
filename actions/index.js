@@ -21,6 +21,7 @@ export const recieveItems = (params, json) => {
 
 export const TOGGLE_DRAWER_COLUMN = "TOGGLE_DRAWER_COLUMN"
 export const toggleDrawerColumn = (newDrawerColumOpenState) => {
+  console.log(newDrawerColumOpenState)
   return {
     type: TOGGLE_DRAWER_COLUMN,
     newDrawerColumOpenState
@@ -51,6 +52,7 @@ export const fetchItems = (params) => {
 
 export const FETCH_RECIPE_REQUEST = "FETCH_RECIPE_REQUEST"
 export const requestRecipe = (id) => {
+  console.log('getting recipe');
   return {
     type: FETCH_RECIPE_REQUEST,
     id
@@ -59,6 +61,7 @@ export const requestRecipe = (id) => {
 
 export const RECIEVE_RECIPE = "RECIEVE_RECIPE"
 export const recieveRecipe = (id, json) => {
+  console.log('recieving recipe');
   return {
     type: RECIEVE_RECIPE,
     id,
@@ -70,6 +73,7 @@ export const fetchRecipe = (id) => {
   return function (dispatch) {
     dispatch(requestRecipe(id))
     return axios.get(`http://api.yummly.com/v1/api/recipe/${id}?_app_id=3749ecd0&_app_key=f2d7e42e718a093a05a25d495c821b1f`).then((json) => {
+      dispatch(toggleDrawerColumn(false))
       dispatch(recieveRecipe(id, json))
     })
   }

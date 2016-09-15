@@ -1,5 +1,8 @@
 @import '../node_modules/bootstrap/scss/bootstrap.scss';
-@import url(https://fonts.googleapis.com/css?family=Oswald);
+@import url(https://fonts.googleapis.com/css?family=Oswald:400,300);
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:400,300italic,300,400italic);
+@import url(https://fonts.googleapis.com/css?family=Roboto:400,700,100,100italic);
+@import './loader.scss';
 
 //variables
 //------------------------------
@@ -8,6 +11,12 @@ $gradient-black: linear-gradient(to bottom, rgba(0,0,0,0) 0%,rgba(0,0,0,0.40) 21
 $bg-primary: $gray-lighter;
 $drawer-column-container-width: 225px;
 $font-size-h3: 1.25rem !important;
+$bg-dark: $gray-dark;
+$text-light: #eee;
+
+//typography variables
+//------------------------------
+
 
 //mixins
 //------------------------------
@@ -35,12 +44,42 @@ body {
   position: absolute;
   animation-name: slideLeft;
   animation-duration: 0.5s;
+  width: 100%;
+
+  .jumbotron {
+    width: 100%;
+    background: $bg-dark;
+    color: $text-light;
+  }
 }
 
 //type//------------------------
 
-h2, h4 {
+h2 {
   font-family: 'Oswald';
+}
+
+h3, h4 {
+  font-family: 'Roboto';
+}
+
+h4 {
+  font-weight: 700;
+}
+
+h3 {
+  font-weight: 100;
+}
+.recipe-subheading {
+  font-family: 'Open Sans';
+  a {
+    font-style: italic;
+    text-transform: uppercase;
+  }
+}
+
+p, span, a, .card-text {
+  font-family: 'Open Sans';
 }
 
 //nav , drawer-column styles
@@ -110,7 +149,7 @@ h2, h4 {
     z-index: 1;
     bottom: 0;
     background: $gradient-black;
-    color: $gray-lightest;
+    color: $text-light;
     width: 100%;
     min-height: 30%;
   }
@@ -118,6 +157,41 @@ h2, h4 {
   border-radius: 0px;
   border: none;
 }
+
+//recipe styles
+//------------------------------------
+
+.recipe-header.jumbotron {
+  .recipe-header-img {
+    img {
+      width: 100%;
+    }
+    // padding-right: 5 * $spacer;
+  }
+  .recipe-header-block {
+    padding: 7%;
+  }
+
+  background: $bg-dark;
+  width: 100%;
+  padding: 0px;
+  border-radius: 0px;
+  .card-img-top {
+    width: 50%;
+    float: right;
+  }
+}
+
+.arrow {
+  width: 0px;
+  border-left: 30px solid $bg-dark;
+  border-top: 30px solid transparent;
+  border-bottom: 30px solid transparent;
+  z-index: 5;
+  position: absolute;
+  top: 40%;
+}
+
 
 //utils
 //-----------------------------------
@@ -170,4 +244,20 @@ h2, h4 {
 @keyframes slideRight {
   from {left: $drawer-column-container-width;}
   to {left: 0px}
+}
+
+
+//media queries
+//------------------------------------------
+
+@media screen and (max-width: 768px) {
+  // .recipe-header-block {
+  //   position: absolute;
+  //   z-index: 1;
+  //   bottom: 0;
+  //   background: $gradient-black;
+  //   color: $text-light;
+  //   width: 100%;
+  //   min-height: 30%;
+  // }
 }
