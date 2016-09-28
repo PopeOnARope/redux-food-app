@@ -1,16 +1,24 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { fetchRecipe } from '../actions'
+import { fetchRecipe, unsetSelectedRecipe } from '../actions'
 import { clone } from 'lodash'
 import RecipeDashboard from './RecipeDashboard'
 
 class RecipeBody extends Component {
   componentWillMount () {
     // console.log('props from recipe', this.props)
+    this.setState({imgContainerClass: 'loader'});
     this.props.dispatch(fetchRecipe (this.props.id))
   }
+  componentWillUnmount () {
+    this.props.dispatch(unsetSelectedRecipe())
+  }
+  setImgClassName (className) {
+    this.setState({imgContainerClass: ''});
+    this.render();
+  }
   render () {
-    if(this.props.currentRecipe) {
+    if(this.props.currentRecipe && typeof this.props.currentRecipe === "object") {
       console.log('recipe body pros', this.props.currentRecipe.data)
       let props = this.props.currentRecipe.data
       let imageUrl = props.images && props.images[0] && props.images[0].hostedLargeUrl ? `${props.images[0].hostedLargeUrl.substring(0, props.images[0] && props.images[0].hostedLargeUrl.length - 4)}s730-e365` : ""
@@ -25,12 +33,14 @@ class RecipeBody extends Component {
               </div>
               <div className="col-md-6 recipe-header-img">
               <div className="arrow arrow-right"></div>
-                <img src={imageUrl}/>
+                <div className={this.state.imgContainerClass}>
+                  <img src={imageUrl} onLoad={this.setImgClassName.bind(this)}/>
+                </div>
               </div>
             </div>
           </div>
           <div className="recipe-body container">
-            <RecipeDashboard totalTime={props.totalTime} yield={props.yield} ingredientLines= {props.ingredientLines} rating={props.rating}/>
+            <RecipeDashboard totalTime={props.totalTime} yield={props.yield} ingredientLines= {props.ingredientLines} rating={props.rating} { ...this.props }/>
           </div>
         </div>
       )

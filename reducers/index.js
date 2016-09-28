@@ -24,6 +24,7 @@ export default (state=initialState, action) => {
       return _state
     case "TOGGLE_DRAWER_COLUMN":
       _state.drawerColumnIsOpen = action.newDrawerColumOpenState
+      _state.isFetching = false
       return _state
     case "UPDATE_PREFERENCES_REQUEST":
       _state.isFetching = true
@@ -34,6 +35,15 @@ export default (state=initialState, action) => {
     case "RECIEVE_RECIPE":
       _state.isFetching = false
       _state.currentRecipe = action.json
+      return _state
+    case  "UNSET_SELECTED_RECIPE":
+      _state.currentRecipe = ''
+      return _state
+    case "SAVE_RECIPE_REQUEST":
+      _state.recipeIsSaving = true
+      return _state
+    case "RECIPE_SAVED":
+      _state.recipeIsSaving = false
       return _state
     default:
       return _state

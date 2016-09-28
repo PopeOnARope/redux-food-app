@@ -1,29 +1,26 @@
 import axios from 'axios'
 import { keys, each } from 'lodash'
 
-export const FETCH_ITEMS_REQUEST = "FETCH_ITEMS_REQUEST"
 export const requestItems = (params) => {
   return {
-    type: FETCH_ITEMS_REQUEST,
+    type: 'FETCH_ITEMS_REQUEST',
     params
   }
 }
 
-export const RECIEVE_ITEMS = "RECIEVE_ITEMS"
 export const recieveItems = (params, json) => {
   let items = json.data.matches
   return {
-    type: RECIEVE_ITEMS,
+    type: 'RECIEVE_ITEMS',
     params,
     items
   }
 }
 
-export const TOGGLE_DRAWER_COLUMN = "TOGGLE_DRAWER_COLUMN"
 export const toggleDrawerColumn = (newDrawerColumOpenState) => {
   console.log(newDrawerColumOpenState)
   return {
-    type: TOGGLE_DRAWER_COLUMN,
+    type: 'TOGGLE_DRAWER_COLUMN',
     newDrawerColumOpenState
   }
 }
@@ -42,7 +39,7 @@ export const fetchItems = (params) => {
     var queryString = query.join('')
 
 
-    return axios.get(`http://api.yummly.com/v1/api/recipes?_app_id=3749ecd0&_app_key=f2d7e42e718a093a05a25d495c821b1f&requirePictures=true&maxResult=50&start=10${queryString}`)
+    return axios.get(`http://api.yummly.com/v1/api/recipes?_app_id=3749ecd0&_app_key=f2d7e42e718a093a05a25d495c821b1f&requirePictures=true&maxResult=10&start=10${queryString}`)
     // .then(response => response.json())
     .then(json =>
       dispatch(recieveItems(params, json))
@@ -50,20 +47,17 @@ export const fetchItems = (params) => {
   }
 }
 
-export const FETCH_RECIPE_REQUEST = "FETCH_RECIPE_REQUEST"
 export const requestRecipe = (id) => {
-  console.log('getting recipe');
   return {
-    type: FETCH_RECIPE_REQUEST,
+    type: 'FETCH_RECIPE_REQUEST',
     id
   }
 }
 
-export const RECIEVE_RECIPE = "RECIEVE_RECIPE"
 export const recieveRecipe = (id, json) => {
   console.log('recieving recipe');
   return {
-    type: RECIEVE_RECIPE,
+    type: 'RECIEVE_RECIPE',
     id,
     json
   }
@@ -71,10 +65,35 @@ export const recieveRecipe = (id, json) => {
 
 export const fetchRecipe = (id) => {
   return function (dispatch) {
+    console.log('REQUESTING');
     dispatch(requestRecipe(id))
     return axios.get(`http://api.yummly.com/v1/api/recipe/${id}?_app_id=3749ecd0&_app_key=f2d7e42e718a093a05a25d495c821b1f`).then((json) => {
-      dispatch(toggleDrawerColumn(false))
-      dispatch(recieveRecipe(id, json))
+      dispatch(toggleDrawerColumn(false));
+      dispatch(recieveRecipe(id, json));
     })
   }
+}
+
+export const unsetSelectedRecipe = (id) => {
+  return {
+    type: 'UNSET_SELECTED_RECIPE'
+  }
+}
+
+export const requestSaveRecipe = () => {
+  console.log('requesting')
+  return {
+    type: 'SAVE_RECIPE_REQUEST'
+  }
+}
+
+export const recipeSaved = () => {
+  return {
+    type: 'RECIPE_SAVED'
+  }
+}
+
+export const saveRecipe = (options) => {
+  console.log('options', arguments);
+  axios.post('/quotes', options)
 }

@@ -15,10 +15,10 @@ class Wrapper extends Component {
     this.props.dispatch(toggleDrawerColumn(!this.props.drawerColumnIsOpen))
   }
   toggleSpinner (isFetching) {
+    //this is super jank right now...
     let $ = (id) => {
       return document.getElementById(id)
     }
-    console.log('toggle spinner', isFetching);
     let loader = document.createElement('div')
     loader.className = 'loader'
     loader.id = 'loader'
@@ -27,11 +27,9 @@ class Wrapper extends Component {
     backdrop.id = 'backdrop'
 
     if(isFetching) {
-      console.log('SHOW SPINNER', $('app'));
       $('app').appendChild(backdrop);
       $('app').appendChild(loader);
     } else {
-      console.log('SHOW SPINNER', $('app'));
       if($('loader')) {
         $('app').removeChild($('loader'));
         $('app').removeChild($('backdrop'));
