@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { each } from 'lodash'
 import { saveRecipe, fetchRecipe } from '../actions'
+import { Button } from '../node_modules/@bfui/boomerang-ui-components'
 
 class RecipeDashboard extends Component {
   constructor () {
@@ -27,7 +28,7 @@ class RecipeDashboard extends Component {
             {this.props.yield}
           </div>
           <div className="col-sm-3 col-xs-3">
-          <h5 className="dashboard-label text-muted">Ingreedient Count</h5>
+          <h5 className="dashboard-label text-muted">Ingredient Count</h5>
             {this.props.ingredientLines.length}
           </div>
           <div className="col-sm-3 col-xs-3">
@@ -38,6 +39,7 @@ class RecipeDashboard extends Component {
         <div className="row">
           <div className="col-md-12">
             <button className="btn btn-primary btn-block" onClick={this.handleSaveButtonClick}>save</button>
+            <Button>test</Button>
           </div>
         </div>
       </div>
